@@ -90,13 +90,7 @@ class SQLObject
     # ...
     self.class.columns.map{|attr| self.send(attr) }
   end
-  #
-  # q = "( "
-  # [29] pry(main)*   x.times do |el|
-  # [29] pry(main)*     q << "?"
-  # [29] pry(main)*     q << " " unless el == x-1
-  # [29] pry(main)*   end
-  # [29] pry(main)*   q << ")"
+
 
   def insert
     # ...
@@ -104,9 +98,14 @@ class SQLObject
     question_marks = "("
     col_names.times do |x|
       question_marks << "?"
-      question_marks << " " unless x == col_names-1
+      question_marks << ", " unless x == col_names-1
     end
     quesiton_marks << ")"
+
+    #do something
+    col_names
+
+    #do more things
 
     DBConnection.last_insert_row_id
   end
